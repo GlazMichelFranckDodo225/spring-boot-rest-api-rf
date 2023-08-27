@@ -1,12 +1,10 @@
 package com.dgmf.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-// Makes this Class as "Spring MVC" Controller
-@Controller
-// The returned Java Object is automatically convert
+// @Controller ==> Makes this Class as "Spring MVC" Controller
+// @ResponseBody ==> The returned Java Object is automatically convert
 // into JSON Object and passed back into the HttpResponse Object
-@ResponseBody
+@RestController // Combination of "@Controller" and "@ResponseBody" Annotations
 public class HelloWorldController {
 }
