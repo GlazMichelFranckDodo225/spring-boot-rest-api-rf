@@ -66,7 +66,7 @@ public class StudentController {
         return studentDTO;
     }
 
-    // Rest API that handles HTTP Post Request
+    // Rest API that handles HTTP Post Request - Creating new resource
     // @PostMapping and @RequestBody
     @PostMapping("/students/create")
     @ResponseStatus(HttpStatus.CREATED)
@@ -80,4 +80,20 @@ public class StudentController {
         return student;
     }
 
+    // Rest API that handles HTTP Post Request - Updating existing resource
+    // @PostMapping and @RequestBody
+    // HTTP Status ==> 200 OK for PUT Request by default
+    @PutMapping("/students/{id}/update")
+    public StudentDTO updateStudent(
+            @RequestBody StudentDTO studentDTO,
+            @PathVariable("id") Long studentId
+    ) {
+        StudentDTO student = StudentDTO.builder()
+                .id(studentId)
+                .firstName(studentDTO.getFirstName())
+                .lastName(studentDTO.getLastName())
+                .build();
+
+        return student;
+    }
 }
