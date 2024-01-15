@@ -66,8 +66,7 @@ public class StudentController {
         return studentDTO;
     }
 
-    // Rest API that handles HTTP Post Request - Creating new resource
-    // @PostMapping and @RequestBody
+    // Rest API that handles HTTP POST Request - Creating new resource
     @PostMapping("/students/create")
     @ResponseStatus(HttpStatus.CREATED)
     public StudentDTO createStudent(@RequestBody StudentDTO studentDTO) {
@@ -80,9 +79,7 @@ public class StudentController {
         return student;
     }
 
-    // Rest API that handles HTTP Post Request - Updating existing resource
-    // @PostMapping and @RequestBody
-    // HTTP Status ==> 200 OK for PUT Request by default
+    // Rest API that handles HTTP POST Request - Updating existing resource
     @PutMapping("/students/{id}/update")
     public StudentDTO updateStudent(
             @RequestBody StudentDTO studentDTO,
@@ -95,5 +92,12 @@ public class StudentController {
                 .build();
 
         return student;
+    }
+
+    // Rest API that handles HTTP DELETE Request - Deleting existing resource
+    @DeleteMapping("/students/{id}/delete")
+    public String deleteStudent(@PathVariable("id") Long studentId) {
+        System.out.println(studentId);
+        return "Student Deleted Successfully.";
     }
 }
