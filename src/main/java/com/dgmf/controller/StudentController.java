@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/students")
 public class StudentController {
     @GetMapping("/student") // http://localhost:8080/student
     public ResponseEntity<StudentDTO> getStudent() {
@@ -25,7 +26,8 @@ public class StudentController {
                 .body(studentDTO);
     }
 
-    @GetMapping("/students") // http://localhost:8080/students
+    // @GetMapping("/students") // http://localhost:8080/students
+    @GetMapping
     public ResponseEntity<List<StudentDTO>> getStudents() {
         List<StudentDTO> studentDTOS = new ArrayList<>();
 
@@ -37,7 +39,8 @@ public class StudentController {
         return ResponseEntity.ok(studentDTOS);
     }
 
-    @GetMapping("/students/{id}/{first-name}/{last-name}")
+    // @GetMapping("/students/{id}/{first-name}/{last-name}")
+    @GetMapping("/{id}/{first-name}/{last-name}")
     // "id", "fn" and "ln" ==> URI Template variables
     // http://localhost:8080/students/1/John/Doe
     public ResponseEntity<StudentDTO> studentPathVariable(
@@ -54,7 +57,8 @@ public class StudentController {
         return ResponseEntity.ok(studentDTO);
     }
 
-    @GetMapping("/students/query") // REST API Endpoint should be unique
+    // @GetMapping("/students/query") // REST API Endpoint should be unique
+    @GetMapping("/query") // REST API Endpoint should be unique
     // "id", "firstname" and "lastname" ==> Query Parameters (Query Strings)
     // http://localhost:8080/students/query?id=1&firstname=John&lastname=Doe
     public ResponseEntity<StudentDTO> studentRequestVariable(
@@ -72,7 +76,8 @@ public class StudentController {
     }
 
     // Rest API that handles HTTP POST Request - Creating new resource
-    @PostMapping("/students/create")
+    // @PostMapping("/students/create")
+    @PostMapping("/create")
     // @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<StudentDTO> createStudent(
             @RequestBody StudentDTO studentDTO
@@ -87,7 +92,8 @@ public class StudentController {
     }
 
     // Rest API that handles HTTP POST Request - Updating existing resource
-    @PutMapping("/students/{id}/update")
+    // @PutMapping("/students/{id}/update")
+    @PutMapping("/{id}/update")
     public ResponseEntity<StudentDTO> updateStudent(
             @RequestBody StudentDTO studentDTO,
             @PathVariable("id") Long studentId
@@ -102,7 +108,8 @@ public class StudentController {
     }
 
     // Rest API that handles HTTP DELETE Request - Deleting existing resource
-    @DeleteMapping("/students/{id}/delete")
+    // @DeleteMapping("/students/{id}/delete")
+    @DeleteMapping("/{id}/delete")
     public ResponseEntity<String> deleteStudent(@PathVariable("id") Long studentId) {
         System.out.println(studentId);
 
